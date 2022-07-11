@@ -21,7 +21,7 @@ contract ToDo{
 
       mapping(uint=>Task) public tasks;
       uint public nextTaskId;
-
+      bool noTaskPresent=true;
 
       event TaskCreated(
           uint id,
@@ -43,6 +43,7 @@ contract ToDo{
             tasks[nextTaskId]=  Task(nextTaskId,block.timestamp,_content,_author,false,0);
             emit TaskCreated(nextTaskId,block.timestamp,_content,_author,false);
             nextTaskId++;
+            noTaskPresent=false;
         }
 
 
@@ -59,7 +60,7 @@ contract ToDo{
 
 
       function toggleDone(uint id) external{
-          require(tasks[id].id != 0,'task does not exist');     //we will face problem with first task with this logic, but we will correct it later.
+          require(noTaskPresent==false,'task does not exist');     //we will face problem with first task with this logic, but we will correct it later.
           Task storage task=tasks[id];  //extract a task from mapping;
           task.done=!task.done;
           task.dateComplete=task.done?block.timestamp:0;

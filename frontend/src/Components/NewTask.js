@@ -18,14 +18,14 @@ function NewTask({createTask}) {
         </div>
         <div className="row">
             {/* form to create next task */}
-          <form id="new-task" className="col-sm-12" onSubmit={e => onSubmit(e)}>
+          <form id="new-task"   className="col-sm-12" onSubmit={e => onSubmit(e)}>
             <div className="form-group">
               <label htmlFor="task-content">Content</label>
-              <input id="task-content" type="text" className="form-control"></input>
+              <input autoComplete="off" id="task-content" type="text" className="form-control"></input>
             </div>
             <div className="form-group">
                 <label htmlFor="task-author">Author</label>
-                <input id="task-author" type="text" className="form-control"></input>
+                <input autoComplete="off" id="task-author" type="text" className="form-control"></input>
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>
